@@ -14,8 +14,11 @@ export default tseslint.config(
       'playwright-report',
       'test-results',
       'node_modules',
-      // Deno runtime — typechecked by `deno check`, not by the browser tsconfig.
+      // Deno runtime — typechecked by `deno check`, not by the browser
+      // tsconfig. The _shared/financial directory is the exception: it is pure
+      // TypeScript with no Deno APIs, so it is linted and tested here.
       'supabase/functions/**',
+      '!supabase/functions/_shared/financial/**',
       'src/types/database.types.ts',
     ],
   },

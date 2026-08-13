@@ -36,7 +36,12 @@ export default defineConfig({
     setupFiles: ['./vitest.setup.ts'],
     css: false,
     // Playwright specs live in e2e/ and must not be picked up by Vitest.
-    include: ['src/**/*.{test,spec}.{ts,tsx}'],
+    include: [
+      'src/**/*.{test,spec}.{ts,tsx}',
+      // Pure financial domain modules shared with the Edge Functions. They
+      // contain no Deno APIs, so the same tests run here and in CI.
+      'supabase/functions/_shared/financial/**/*.test.ts',
+    ],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html'],
