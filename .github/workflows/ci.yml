@@ -58,6 +58,19 @@ jobs:
       - name: Apply migrations
         run: PG_BIN=/usr/lib/postgresql/17/bin ./scripts/validate-migrations.sh
 
+  edge-functions:
+    name: Typecheck Edge Functions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      # The Edge Functions run on Deno, not on the browser tsconfig, so they
+      # are typechecked separately. The pure modules under _shared/financial
+      # and _shared/finance are additionally covered by `pnpm typecheck`.
+      - run: deno check --config supabase/functions/deno.json supabase/functions/*/index.ts
+
   secret-scan:
     name: Check for committed credentials
     runs-on: ubuntu-latest

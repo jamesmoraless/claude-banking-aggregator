@@ -4,7 +4,7 @@ Everything that cannot be automated from this repository, in the order it needs 
 
 Nothing here has been done for you. No Supabase project has been created, no Plaid account configured, no deployment made. This document exists so you never have to ask *"what do I have to fill in to make this real?"*
 
-> **Current implementation status** — see [ARCHITECTURE.md §10](./ARCHITECTURE.md#10-implementation-status). Sections below covering Edge Functions apply once those functions have landed; the app is built so that activating them requires configuration only, never code changes.
+> **The code is complete.** Every Edge Function, migration and screen described below is implemented. Nothing here requires further development — only configuration and third-party account setup.
 
 **Time:** roughly 45–60 minutes for a first run, most of it waiting on dashboards.
 
