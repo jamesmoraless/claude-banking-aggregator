@@ -350,10 +350,11 @@ shadcn/ui's Tailwind 4 support is newer and the migration touches every token. B
 |---|---|
 | Foundation — app, tooling, shell, auth, design system, domain layer | ✅ Complete |
 | Database — schema, constraints, indexes, RLS, canonical views and RPCs | ✅ Complete |
-| Screens — Overview, Accounts | ✅ Complete |
-| Screens — Transactions, Transfer Review, Cash Flow, Settings | 🚧 In progress |
+| Screens — Overview, Accounts, Transactions, Transfer Review, Cash Flow, Settings | ✅ Complete |
+| Normalisation — classification, rules, transfer detection, card matching | ✅ Complete |
 | Edge Functions — Plaid connect, sync, webhooks, refresh, removal | 🚧 In progress |
-| Normalisation — classification, rules, transfer detection, card matching | 🚧 In progress |
 | Atlas AI — `finance-chat`, tools, structured responses | 🚧 In progress |
 
-Routes for unbuilt screens render an explicit "not built yet" panel. They contain no sample financial data, so nothing on them can be mistaken for a working feature.
+The Chat route renders an explicit "not built yet" panel containing no sample financial data.
+
+The frontend is fully wired to its real endpoints. Until the Edge Functions are deployed, **Connect institution** fails with `EDGE_FUNCTION_NOT_DEPLOYED` and says so — which is the correct behaviour for an undeployed backend, and requires no code change to fix once they land.
