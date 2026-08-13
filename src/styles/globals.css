@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Cash Atlas design tokens.
+ *
+ * Financial colour semantics are deliberately restrained. Money leaving an
+ * account is rendered in near-black rather than red: a normal grocery shop is
+ * not an error, and colouring every expense red makes the genuinely
+ * attention-worthy states (reconnect required, unclassified) invisible.
+ *
+ * Colour is never the only carrier of meaning. Direction is also communicated
+ * by an explicit +/− sign, inflow/outflow iconography and text labels, so the
+ * interface remains readable for colour-blind users and in high-contrast modes.
+ */
+
+@layer base {
+  :root {
+    /* Surfaces */
+    --background: 220 24% 97%;
+    --foreground: 222 30% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 30% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 30% 11%;
+
+    /* Green primary accent */
+    --primary: 152 58% 34%;
+    --primary-foreground: 0 0% 100%;
+    --primary-subtle: 152 52% 95%;
+
+    /* Neutral secondary */
+    --secondary: 220 16% 95%;
+    --secondary-foreground: 222 25% 20%;
+
+    --muted: 220 16% 96%;
+    --muted-foreground: 220 10% 46%;
+
+    /* Blue analytical accent */
+    --accent: 217 91% 96%;
+    --accent-foreground: 217 80% 34%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-subtle: 0 86% 97%;
+
+    --border: 220 16% 90%;
+    --input: 220 16% 88%;
+    --ring: 152 58% 34%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar */
+    --sidebar: 0 0% 100%;
+    --sidebar-foreground: 222 20% 32%;
+    --sidebar-accent: 152 52% 95%;
+    --sidebar-accent-foreground: 152 58% 26%;
+    --sidebar-border: 220 16% 92%;
+
+    /* Financial semantics */
+    --finance-inflow: 152 58% 30%;
+    --finance-outflow: 222 30% 14%;
+    --finance-neutral: 220 10% 46%;
+    --finance-transfer: 217 82% 52%;
+    --finance-warning: 30 92% 40%;
+
+    /* Categorical chart ramp. Ordered so that adjacent series stay
+       distinguishable under the common forms of colour blindness. */
+    --chart-1: 217 82% 55%;
+    --chart-2: 152 58% 40%;
+    --chart-3: 27 92% 55%;
+    --chart-4: 265 62% 58%;
+    --chart-5: 187 62% 42%;
+    --chart-6: 341 70% 55%;
+    --chart-7: 220 10% 62%;
+  }
+
+  .dark {
+    --background: 222 30% 8%;
+    --foreground: 220 20% 96%;
+    --card: 222 26% 11%;
+    --card-foreground: 220 20% 96%;
+    --popover: 222 26% 11%;
+    --popover-foreground: 220 20% 96%;
+
+    --primary: 152 52% 45%;
+    --primary-foreground: 222 30% 8%;
+    --primary-subtle: 152 30% 16%;
+
+    --secondary: 222 20% 17%;
+    --secondary-foreground: 220 20% 96%;
+
+    --muted: 222 20% 16%;
+    --muted-foreground: 220 12% 65%;
+
+    --accent: 217 40% 20%;
+    --accent-foreground: 217 90% 80%;
+
+    --destructive: 0 62% 52%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-subtle: 0 40% 18%;
+
+    --border: 222 18% 22%;
+    --input: 222 18% 24%;
+    --ring: 152 52% 45%;
+
+    --sidebar: 222 26% 11%;
+    --sidebar-foreground: 220 14% 72%;
+    --sidebar-accent: 152 30% 18%;
+    --sidebar-accent-foreground: 152 52% 72%;
+    --sidebar-border: 222 18% 20%;
+
+    --finance-inflow: 152 52% 55%;
+    --finance-outflow: 220 20% 92%;
+    --finance-neutral: 220 12% 65%;
+    --finance-transfer: 217 82% 66%;
+    --finance-warning: 30 92% 60%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings:
+      'cv02' 1,
+      'cv03' 1,
+      'cv04' 1;
+  }
+
+  /* Tabular figures keep columns of money vertically aligned. */
+  .tabular-money {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+  }
+
+  /* A visible, consistent focus ring everywhere — never removed. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* Respect reduced-motion preferences for every animation we ship. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Skip link, revealed on keyboard focus. */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50
+      focus:rounded-md focus:bg-card focus:px-4 focus:py-2 focus:text-sm focus:font-medium
+      focus:shadow-card-hover;
+  }
+
+  .shimmer {
+    @apply relative overflow-hidden bg-muted;
+  }
+
+  .shimmer::after {
+    @apply absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r
+      from-transparent via-white/55 to-transparent;
+    content: '';
+  }
+}
