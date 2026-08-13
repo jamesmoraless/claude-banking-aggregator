@@ -34,5 +34,13 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "vitest.setup.ts", "supabase/functions/_shared/financial"]
+  "include": [
+    "src",
+    "vitest.setup.ts",
+    "supabase/functions/_shared/financial",
+    "supabase/functions/_shared/finance/blocks.ts",
+    "supabase/functions/_shared/finance/tool-result.ts",
+    "supabase/functions/_shared/finance/tool-definitions.ts",
+    "supabase/functions/_shared/finance/__tests__"
+  ]
 }

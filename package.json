@@ -30,6 +30,7 @@
     "db:types:remote": "supabase gen types typescript --linked > src/types/database.types.ts",
     "functions:serve": "supabase functions serve --env-file supabase/functions/.env",
     "functions:deploy": "supabase functions deploy",
+    "functions:check": "deno check --config supabase/functions/deno.json supabase/functions/*/index.ts",
     "verify": "pnpm typecheck && pnpm lint && pnpm test && pnpm build"
   },
   "pnpm": {

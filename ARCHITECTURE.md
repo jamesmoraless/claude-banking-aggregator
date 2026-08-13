@@ -352,9 +352,9 @@ shadcn/ui's Tailwind 4 support is newer and the migration touches every token. B
 | Database — schema, constraints, indexes, RLS, canonical views and RPCs | ✅ Complete |
 | Screens — Overview, Accounts, Transactions, Transfer Review, Cash Flow, Settings | ✅ Complete |
 | Normalisation — classification, rules, transfer detection, card matching | ✅ Complete |
-| Edge Functions — Plaid connect, sync, webhooks, refresh, removal | 🚧 In progress |
-| Atlas AI — `finance-chat`, tools, structured responses | 🚧 In progress |
+| Edge Functions — Plaid connect, sync, webhooks, refresh, removal, scheduled sync | ✅ Complete |
+| Atlas AI — `finance-chat`, 16 tools, structured responses | ✅ Complete |
 
-The Chat route renders an explicit "not built yet" panel containing no sample financial data.
+Every phase is implemented. What remains is entirely external configuration — creating the Supabase project, obtaining Plaid and Anthropic credentials, deploying, and scheduling the safety-net sync. All of it is enumerated in [MANUAL_SETUP.md](./MANUAL_SETUP.md), and none of it requires a code change.
 
-The frontend is fully wired to its real endpoints. Until the Edge Functions are deployed, **Connect institution** fails with `EDGE_FUNCTION_NOT_DEPLOYED` and says so — which is the correct behaviour for an undeployed backend, and requires no code change to fix once they land.
+**Nothing external has been set up or verified.** No Supabase project exists, no Plaid connection has been made, no deployment has happened, and no webhook has been received. The repository is complete; the accounts are not.

@@ -19,6 +19,8 @@ export default tseslint.config(
       // TypeScript with no Deno APIs, so it is linted and tested here.
       'supabase/functions/**',
       '!supabase/functions/_shared/financial/**',
+      '!supabase/functions/_shared/finance/blocks.ts',
+      '!supabase/functions/_shared/finance/__tests__/**',
       'src/types/database.types.ts',
     ],
   },

@@ -41,6 +41,7 @@ export default defineConfig({
       // Pure financial domain modules shared with the Edge Functions. They
       // contain no Deno APIs, so the same tests run here and in CI.
       'supabase/functions/_shared/financial/**/*.test.ts',
+      'supabase/functions/_shared/finance/**/*.test.ts',
     ],
     coverage: {
       provider: 'v8',
